@@ -1,0 +1,49 @@
+-- REF: https://github.com/hrsh7th/nvim-cmp?tab=readme-ov-file
+return {
+    --snippets
+    {
+        'L3MON4D3/LuaSnip',
+        dependencies = {
+            'hrsh7th/cmp-nvim-lsp',
+            'saadparwaiz1/cmp_luasnip',
+            "rafamadriz/friendly-snippets",
+            'doxnit/cmp-luasnip-choice',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+        },
+    },
+    --use nvim-cmp to connect to those snippets' sources
+    {
+        "hrsh7th/nvim-cmp",
+        config = function ()
+            local cmp = require('cmp')
+            --friendly snippets
+            require("luasnip.loaders.from_vscode").load {}
+            cmp.setup({
+                snippet = {
+                    expand = function(args)
+                        require('luasnip').lsp_expand(args.body)
+                    end
+                },
+                window = {
+                    completion = cmp.config.window.bordered(),
+                    documentation = cmp.config.window.bordered(),
+                },
+                mapping = cmp.mapping.preset.insert({
+                    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+                    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                    ['<C-Space>'] = cmp.mapping.complete(),
+                    ['<C-e>'] = cmp.mapping.abort(),
+                    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                }),
+                sources = cmp.config.sources({
+                        { name = 'nvim_lsp' },
+                        { name = 'luasnip' },
+                        { name = 'luasnip_choice' },
+                        { name = 'buffer' },
+                        { name = 'path' }
+                })
+            })
+        end
+    }
+}
