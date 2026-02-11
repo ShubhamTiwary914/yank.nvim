@@ -5,27 +5,48 @@ local lspConfigs = function ()
     }
     vim.lsp.enable('lua_ls')
 
-    vim.lsp.config['typescript_ls'] = {
-        cmd = {'typescript_language-server'},
-        filetypes = {'ts'},
-    } 
-    vim.lsp.enable('typescript_ls')
-
-
     vim.lsp.config['python_ls'] = {
-        cmd = {'python-lsp-server'},
+        cmd = {'pyright'},
         filetypes = {'py'},
     }
     vim.lsp.enable('python_ls')
-
 
     vim.lsp.config['bash_ls'] = {
         cmd = {'bash-language-server'},
         filetypes = {'sh'},
     }
     vim.lsp.enable('bash_ls')
-end
 
+    vim.lsp.config['javascript_ls'] = { 
+        cmd = {'quick-lint-js'},
+        filetypes = {'js'},
+    }
+    vim.lsp.enable('javascript_ls')
+
+    vim.lsp.config['typescript_ls'] = {
+        cmd = {'typescript_language-server'},
+        filetypes = {'ts'},
+    } 
+    vim.lsp.enable('typescript_ls')
+
+    vim.lsp.config['jsts_ls'] = {
+        cmd = {'oxlint'},
+        filetypes = {'js'},
+    }
+    vim.lsp.enable('jsts_ls')
+
+    vim.lsp.config['golang_ls'] = {
+        cmd = {'gopls'},
+        filetypes = {'go'},
+    } 
+    vim.lsp.enable('golang_ls')
+
+    vim.lsp.config['docker_ls'] = {
+        cmd = {'docker-language-server'},
+        filetypes = {'Dockerfile', 'yml', 'yaml'},
+    }
+    vim.lsp.enable('docker_ls')
+end
 
 return {
    --mason for downloading LSP servers, Lint, Formatter, ..
