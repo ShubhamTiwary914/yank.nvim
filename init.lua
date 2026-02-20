@@ -1,12 +1,12 @@
 -- VIM OPTIONS --------------------- 
-vim.cmd("set expandtab")
+vim.cmd("set noexpandtab")
 vim.cmd("set relativenumber")
 vim.cmd("set tabstop=4")
 vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=4")
 
-vim.g.mapleader = ' ' 
-vim.g.maplocalleader = ' ' 
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 
 -- LAZY.NVIM & PLUGINS --------------------- 
@@ -46,3 +46,17 @@ local function require_dir(modpath)
 end
 -- loads the lua files from ~/.config/nvim/lua/custom 
 require_dir("custom")
+
+
+-- transparent bg
+-- vim.api.nvim_create_autocmd("ColorScheme", {
+--   callback = function()
+--     vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+--     vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+--     vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "none" })
+--     vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "none" })
+--   end,
+-- })
+
+-- current colorscheme
+vim.cmd.colorscheme "tokyonight-night"

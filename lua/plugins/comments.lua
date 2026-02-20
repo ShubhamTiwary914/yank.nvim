@@ -4,16 +4,18 @@ return {
         'numToStr/Comment.nvim',
         config = function ()
             require('Comment').setup({
-                padding = true, 
+                padding = true,
                 mappings = {
                     basic = true,
                     extra = true
                 }
             })
-            -- line toggle comment 
             local api = require("Comment.api")
+            -- normal: line toggle comment 
             vim.keymap.set("n", "11", api.toggle.linewise.current)
-        end 
+			-- visual mode: toggle selected lines
+			vim.keymap.set('x', '11', '<Plug>(comment_toggle_linewise_visual)')
+        end
     },
     {
         --highlights for TODO, WARNING, BUG, NOTE, etc... comments 

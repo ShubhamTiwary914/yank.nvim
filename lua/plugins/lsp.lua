@@ -17,7 +17,7 @@ local lspConfigs = function ()
     }
     vim.lsp.enable('bash_ls')
 
-    vim.lsp.config['javascript_ls'] = { 
+    vim.lsp.config['javascript_ls'] = {
         cmd = {'quick-lint-js'},
         filetypes = {'js'},
     }
@@ -26,7 +26,7 @@ local lspConfigs = function ()
     vim.lsp.config['typescript_ls'] = {
         cmd = {'typescript_language-server'},
         filetypes = {'ts'},
-    } 
+    }
     vim.lsp.enable('typescript_ls')
 
     vim.lsp.config['jsts_ls'] = {
@@ -78,6 +78,16 @@ return {
             vim.keymap.set('n','hj', vim.lsp.buf.implementation, {}) -- goto implementation 
             vim.keymap.set('n','hg', vim.lsp.buf.code_action, {}) -- suggestions on fixes (via treesitter-select)
             lspConfigs()
+
+			vim.diagnostic.config({
+				virtual_text = {
+					prefix = "●",
+				},
+				signs = true,
+				underline = true,
+				update_in_insert = false,
+				severity_sort = true,
+			})
         end
     }
 }

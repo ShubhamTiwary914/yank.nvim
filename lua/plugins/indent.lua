@@ -7,9 +7,9 @@ return {
     lazy = false,
     config = function()
         require("indentmini").setup({
-            only_current = false,
+            -- only_current = false,
             enabled = true,
-            char = '▏',
+			chat = '| ',
             minlevel = 2,
             exclude = { 'text' }
         })
