@@ -38,7 +38,7 @@ local lspConfigs = function ()
     vim.lsp.config['golang_ls'] = {
         cmd = {'gopls'},
         filetypes = {'go'},
-    } 
+    }
     vim.lsp.enable('golang_ls')
 
     vim.lsp.config['docker_ls'] = {

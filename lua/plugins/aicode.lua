@@ -1,3 +1,5 @@
+-- currently supprts only gemini provider _
+-- check https://github.com/frankroeder/parrot.nvim for guide on ollama/openAI/anthropic models
 local secrets = require("secrets")
 
 local geminiProvider = {
