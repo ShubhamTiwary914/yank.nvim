@@ -58,7 +58,7 @@ Open Neovim and let the plugins install automatically.
 - catppuccin - Color theme
 - barbar - Buffer tab management.
 
+---
 
-### Things to Add:
-- [ ] DAP (debugging)
-- [ ] Ai code assist (not annoying autocmp like cursor, just query on selected buffer in V-mode)
+> [!NOTE]
+> works only for neovim >= 0.11.x, gotta update the configs so it works for <= 0.10.x but doesn't support for now
