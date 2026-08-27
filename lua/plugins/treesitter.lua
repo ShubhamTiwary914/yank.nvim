@@ -3,7 +3,7 @@ return	{
     lazy = false,
     build = ':TSUpdate',
     config = function()
-        require'nvim-treesitter'.install {'javascript', 'lua'}
+        -- require'nvim-treesitter'.install {'javascript', 'lua'}
     end
 }
 

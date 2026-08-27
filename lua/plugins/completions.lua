@@ -12,6 +12,7 @@ return {
             'hrsh7th/cmp-path',
         },
     },
+
     --use nvim-cmp to connect to those snippets' sources
     {
         "hrsh7th/nvim-cmp",
@@ -44,6 +45,15 @@ return {
                         { name = 'path' }
                 })
             })
+
+			vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#ffffff" })
+			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+				vim.lsp.handlers.hover, { border = "rounded" }
+			)
+			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+				vim.lsp.handlers.signature_help, { border = "rounded" }
+			)
         end
     }
 }
+

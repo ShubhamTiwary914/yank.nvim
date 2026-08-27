@@ -7,10 +7,22 @@ local onedark = {
   end,
 }
 
+local vscode = {
+  "Mofiqul/vscode.nvim",
+  config = function()
+    require("vscode").setup({
+      style = "dark",
+      transparent = false,
+    })
+  end,
+}
+
 return {
 	{"catppuccin/nvim"},
 	{"xero/miasma.nvim"},
 	{"folke/tokyonight.nvim"},
 	{"morhetz/gruvbox"},
-	onedark
+	{"projekt0n/github-nvim-theme"},
+	onedark,
+	vscode
 }

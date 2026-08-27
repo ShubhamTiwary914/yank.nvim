@@ -49,14 +49,15 @@ require_dir("custom")
 
 
 -- transparent bg
--- vim.api.nvim_create_autocmd("ColorScheme", {
---   callback = function()
---     vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
---     vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
---     vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "none" })
---     vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "none" })
---   end,
--- })
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = function()
+    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "none" })
+  end,
+})
 
 -- current colorscheme
+--vim.cmd.colorscheme "tokyonight-moon"
 vim.cmd.colorscheme "tokyonight-night"

@@ -1,3 +1,4 @@
+
 local lspConfigs = function ()
     vim.lsp.config['lua_ls'] = {
         cmd = { 'lua-language-server' },
@@ -46,7 +47,22 @@ local lspConfigs = function ()
         filetypes = {'Dockerfile', 'yml', 'yaml'},
     }
     vim.lsp.enable('docker_ls')
+
+	vim.lsp.config['clangd'] = {
+		cmd = {'clangd', '--query-driver=**'},
+		filetypes = {'c', 'cpp', 'c++', 'h'},
+	}
+	vim.lsp.enable("clangd")
+
+	vim.lsp.config['terraformls'] = {
+		cmd = { 'terraform-ls', 'serve' },
+		filetypes = { 'terraform', 'terraform-vars', 'tf', 'tf-vars'},
+		root_markers = { '.terraform', '.git', 'main.tf' },
+	}
+	vim.lsp.enable('terraformls')
 end
+
+
 
 return {
    --mason for downloading LSP servers, Lint, Formatter, ..
@@ -73,21 +89,35 @@ return {
     -- Check status, logs for LSP -> :LspInfo
     {
         "neovim/nvim-lspconfig",
-        config = function()
-            vim.keymap.set('n','hh', vim.lsp.buf.hover, {}) -- hover info details
-            vim.keymap.set('n','hj', vim.lsp.buf.implementation, {}) -- goto implementation 
-            vim.keymap.set('n','hg', vim.lsp.buf.code_action, {}) -- suggestions on fixes (via treesitter-select)
-            lspConfigs()
+		config = function()
+			vim.lsp.handlers["textDocument/hover"] = function(err, result, ctx, config)
+				config = config or {}
+				config.border = "rounded"
+				return vim.lsp.handlers.hover(err, result, ctx, config)
+			end
+
+			vim.lsp.handlers["textDocument/signatureHelp"] = function(err, result, ctx, config)
+				config = config or {}
+				config.border = "rounded"
+				return vim.lsp.handlers.signature_help(err, result, ctx, config)
+			end
+
+			vim.keymap.set('n', 'hh', vim.lsp.buf.hover, {})
+			vim.keymap.set('n', 'hj', vim.lsp.buf.implementation, {})
+			vim.keymap.set('n', 'hg', vim.lsp.buf.code_action, {})
+
+			lspConfigs()
 
 			vim.diagnostic.config({
+				float = { border = "rounded" },
 				virtual_text = {
-					prefix = "●",
+					prefix = '■ ',
 				},
 				signs = true,
 				underline = true,
 				update_in_insert = false,
 				severity_sort = true,
 			})
-        end
+		end
     }
 }
